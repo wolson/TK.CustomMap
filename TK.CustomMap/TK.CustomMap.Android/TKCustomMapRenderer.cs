@@ -337,7 +337,7 @@ namespace TK.CustomMap.Droid
             {
                 foreach (TKCustomMapPin pin in e.OldItems)
                 {
-                    if (!this.FormsMap.CustomPins.Contains(pin))
+                    if (this.FormsMap != null && !this.FormsMap.CustomPins.Contains(pin))
                     {
                         this.RemovePin(pin);
                     }
@@ -416,7 +416,7 @@ namespace TK.CustomMap.Droid
             {
                 foreach (TKPolyline line in e.OldItems)
                 {
-                    if (!this.FormsMap.Polylines.Contains(line))
+                    if (this.FormsMap != null && !this.FormsMap.Polylines.Contains(line))
                     {
                         this._polylines[line].Remove();
                         line.PropertyChanged -= OnLinePropertyChanged;
@@ -470,7 +470,7 @@ namespace TK.CustomMap.Droid
                 this.RemovePin(i.Key, false);
             }
             this._markers.Clear();
-            if (this.FormsMap.CustomPins != null)
+            if (this.FormsMap?.CustomPins != null)
             {
                 foreach (var pin in this.FormsMap.CustomPins)
                 {
@@ -529,7 +529,8 @@ namespace TK.CustomMap.Droid
             {
                 if (item.Id.Equals(this._selectedMarker.Id))
                 {
-                    this.FormsMap.SelectedPin = null;
+                    if (this.FormsMap != null)
+                        this.FormsMap.SelectedPin = null;
                 }
             }
 
@@ -551,7 +552,7 @@ namespace TK.CustomMap.Droid
                 this._selectedMarker.HideInfoWindow();
                 this._selectedMarker = null;
             }
-            if (this.FormsMap.SelectedPin != null)
+            if (this.FormsMap?.SelectedPin != null)
             {
                 if (!this._markers.ContainsKey(this.FormsMap.SelectedPin)) return;
 
@@ -599,7 +600,7 @@ namespace TK.CustomMap.Droid
             }
             this._polylines.Clear();
 
-            if (this.FormsMap.Polylines != null)
+            if (this.FormsMap?.Polylines != null)
             {
                 foreach (var line in this.FormsMap.Polylines)
                 {
@@ -629,7 +630,7 @@ namespace TK.CustomMap.Droid
                 i.Value.Remove();
             }
             this._circles.Clear();
-            if (this.FormsMap.Circles != null)
+            if (this.FormsMap?.Circles != null)
             {
                 foreach (var circle in this.FormsMap.Circles)
                 {
@@ -659,7 +660,7 @@ namespace TK.CustomMap.Droid
                 i.Value.Remove();
             }
             this._polygons.Clear();
-            if (this.FormsMap.Polygons != null)
+            if (this.FormsMap?.Polygons != null)
             {
                 foreach (var i in this.FormsMap.Polygons)
                 {
@@ -727,7 +728,7 @@ namespace TK.CustomMap.Droid
             {
                 foreach (TKRoute route in e.OldItems)
                 {
-                    if (!this.FormsMap.Routes.Contains(route))
+                    if (this.FormsMap != null && !this.FormsMap.Routes.Contains(route))
                     {
                         this._routes[route].Remove();
                         route.PropertyChanged -= OnRoutePropertyChanged;
@@ -786,7 +787,7 @@ namespace TK.CustomMap.Droid
             {
                 foreach (TKPolygon poly in e.OldItems)
                 {
-                    if (!this.FormsMap.Polygons.Contains(poly))
+                    if (this.FormsMap != null && !this.FormsMap.Polygons.Contains(poly))
                     {
                         this._polygons[poly].Remove();
                         poly.PropertyChanged -= OnPolygonPropertyChanged;
@@ -868,7 +869,7 @@ namespace TK.CustomMap.Droid
             {
                 foreach (TKCircle circle in e.OldItems)
                 {
-                    if (!this.FormsMap.Circles.Contains(circle))
+                    if (this.FormsMap != null && !this.FormsMap.Circles.Contains(circle))
                     {
                         circle.PropertyChanged -= CirclePropertyChanged;
                         this._circles[circle].Remove();
