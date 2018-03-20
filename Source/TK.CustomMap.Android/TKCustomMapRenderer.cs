@@ -435,7 +435,7 @@ namespace TK.CustomMap.Droid
             {
                 foreach (TKCustomMapPin pin in e.OldItems)
                 {
-                    if (FormsMap != null && !FormsMap.CustomPins.Contains(pin))
+                    if (FormsMap != null && !FormsMap.Pins.Contains(pin))
                     {
                         RemovePin(pin);
                     }
@@ -540,7 +540,7 @@ namespace TK.CustomMap.Droid
                 RemovePin(i.Key, false);
             }
             _markers.Clear();
-            if (FormsMap?.CustomPins != null)
+            if (FormsMap?.Pins != null)
             {
                 foreach (var pin in FormsMap.Pins)
                 {
