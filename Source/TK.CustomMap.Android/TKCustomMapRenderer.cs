@@ -303,7 +303,7 @@ namespace TK.CustomMap.Droid
         /// <param name="e">Event Arguments</param>
         void OnMarkerDrag(object sender, GoogleMap.MarkerDragEventArgs e)
         {
-            var item = _markers.SingleOrDefault(i => i.Value.Marker.Id.Equals(e.Marker.Id));
+            var item = _markers.SingleOrDefault(i => true == i.Value.Marker?.Id.Equals(e.Marker.Id));
             if (item.Key == null) return;
 
             item.Key.Position = e.Marker.Position.ToPosition();
@@ -341,7 +341,7 @@ namespace TK.CustomMap.Droid
         void OnMarkerClick(object sender, GoogleMap.MarkerClickEventArgs e)
         {
             if (FormsMap == null) return;
-            var item = _markers.SingleOrDefault(i => i.Value.Marker.Id.Equals(e.Marker.Id));
+            var item = _markers.SingleOrDefault(i => true == i.Value.Marker?.Id.Equals(e.Marker.Id));
             if (item.Key == null) return;
 
             _selectedMarker = e.Marker;
@@ -362,7 +362,7 @@ namespace TK.CustomMap.Droid
 
             if (FormsMap == null) return;
 
-            var pin = _markers.SingleOrDefault(i => i.Value.Marker.Id.Equals(e.Marker.Id));
+            var pin = _markers.SingleOrDefault(i => true == i.Value.Marker?.Id.Equals(e.Marker.Id));
             if (pin.Key == null) return;
 
             if (FormsMap.IsClusteringEnabled)
@@ -595,7 +595,7 @@ namespace TK.CustomMap.Droid
 
             if (_selectedMarker != null)
             {
-                if (item.Marker.Id.Equals(_selectedMarker.Id))
+                if (item.Marker != null && item.Marker.Id.Equals(_selectedMarker.Id))
                 {
                     if (FormsMap != null)
                         FormsMap.SelectedPin = null;
@@ -1204,7 +1204,7 @@ namespace TK.CustomMap.Droid
         /// </summary>
         void UpdateMapRegion()
         {
-            if (FormsMap == null || _googleMap == null || !_isLayoutPerformed) return;
+            if (FormsMap == null || FormsMap.MapRegion == null || _googleMap == null || !_isLayoutPerformed) return;
 
             if (!FormsMap.MapRegion.Equals(GetCurrentMapRegion(_googleMap.CameraPosition.Target)))
             {
@@ -1458,7 +1458,7 @@ namespace TK.CustomMap.Droid
         /// <returns>The forms pin</returns>
         protected TKCustomMapPin GetPinByMarker(Marker marker)
         {
-            return _markers.SingleOrDefault(i => i.Value.Marker.Id == marker.Id).Key;
+            return _markers.SingleOrDefault(i => i.Value.Marker?.Id == marker.Id).Key;
         }
 
         public void OnCameraIdle()
