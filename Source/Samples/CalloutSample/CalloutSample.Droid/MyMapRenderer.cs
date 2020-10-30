@@ -22,6 +22,11 @@ namespace CalloutSample.Droid
 {
     public class MyMapRenderer : TKCustomMapRenderer, Android.Gms.Maps.GoogleMap.IInfoWindowAdapter
     {
+        public MyMapRenderer(Context context) : base(context)
+        {
+
+        }
+
         public override void OnMapReady(Android.Gms.Maps.GoogleMap googleMap)
         {
             base.OnMapReady(googleMap);

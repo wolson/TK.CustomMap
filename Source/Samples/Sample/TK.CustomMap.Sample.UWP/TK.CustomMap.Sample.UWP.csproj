@@ -144,10 +144,10 @@
       <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>3.4.0.1029999</Version>
+      <Version>4.7.0.1351</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>3.4.0.1029999</Version>
+      <Version>4.7.0.1351</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
